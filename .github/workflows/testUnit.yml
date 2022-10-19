@@ -1,0 +1,22 @@
+name: Teste unitário com React Native
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish:
+    name: Teste com Jest
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+
+      - run: yarn
+      - run: yarn jest
